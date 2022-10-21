@@ -1,0 +1,43 @@
+{
+  "name": "@applaud/postcss-svgo",
+  "version": "1.0.0",
+  "description": "Optimise inline SVG with PostCSS.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "cross-env BABEL_ENV=publish babel src --out-dir dist --ignore /__tests__/"
+  },
+  "files": [
+    "LICENSE-MIT",
+    "dist"
+  ],
+  "keywords": [
+    "css",
+    "minify",
+    "optimise",
+    "postcss",
+    "postcss-plugin",
+    "svg",
+    "svgo",
+    "applaud"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.0.0",
+    "cross-env": "^5.0.0",
+    "pleeease-filters": "^4.0.0"
+  },
+  "homepage": "https://github.com/Applaud-devpack/postcss-svgo",
+  "author": "Applaud",
+  "repository": "cssnano/cssnano",
+  "dependencies": {
+    "@applaud/svgo": "^1.0.0",
+    "postcss": "^7.0.0",
+    "postcss-value-parser": "^3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Applaud-devpack/postcss-svgo/issues"
+  },
+  "engines": {
+    "node": ">=6.9.0"
+  }
+}
