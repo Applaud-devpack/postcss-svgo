@@ -1,4 +1,4 @@
-# [@applaud/postcss][@applaud/postcss]-svgo
+# @applaud/postcss-svgo
 
 > Optimise inline SVG with PostCSS.
 
