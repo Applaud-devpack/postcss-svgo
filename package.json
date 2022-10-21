@@ -1,6 +1,6 @@
 {
   "name": "@applaud/postcss-svgo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Optimise inline SVG with PostCSS.",
   "main": "dist/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Applaud-devpack/postcss-svgo",
   "author": "Applaud",
-  "repository": "cssnano/cssnano",
+  "repository": "https://github.com/Applaud-devpack/postcss-svgo",
   "dependencies": {
     "@applaud/svgo": "^1.0.0",
     "postcss": "^7.0.0",
