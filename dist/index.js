@@ -1,7 +1,24 @@
-import postcss from 'postcss';
-import valueParser from 'postcss-value-parser';
-import SVGO from '@applaud/svgo';
-import { encode, decode } from './lib/url';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _postcss = require('postcss');
+
+var _postcss2 = _interopRequireDefault(_postcss);
+
+var _postcssValueParser = require('postcss-value-parser');
+
+var _postcssValueParser2 = _interopRequireDefault(_postcssValueParser);
+
+var _svgo = require('@applaud/svgo');
+
+var _svgo2 = _interopRequireDefault(_svgo);
+
+var _url = require('./lib/url');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const PLUGIN = 'postcss-svgo';
 const dataURI = /data:image\/svg\+xml(;((charset=)?utf-8|base64))?,/i;
@@ -9,7 +26,7 @@ const dataURIBase64 = /data:image\/svg\+xml;base64,/i;
 
 function minifyPromise(decl, getSvgo, opts, postcssResult) {
     const promises = [];
-    const parsed = valueParser(decl.value);
+    const parsed = (0, _postcssValueParser2.default)(decl.value);
 
     decl.value = parsed.walk(node => {
         if (node.type !== 'function' || node.value.toLowerCase() !== 'url' || !node.nodes.length) {
@@ -27,7 +44,7 @@ function minifyPromise(decl, getSvgo, opts, postcssResult) {
             let decodedUri;
 
             try {
-                decodedUri = decode(svg);
+                decodedUri = (0, _url.decode)(svg);
                 isUriEncoded = decodedUri !== svg;
             } catch (e) {
                 // Swallow exception if we cannot decode the value
@@ -54,7 +71,7 @@ function minifyPromise(decl, getSvgo, opts, postcssResult) {
                 data = Buffer.from(result.data).toString('base64');
                 optimizedValue = 'data:image/svg+xml;base64,' + data;
             } else {
-                data = isUriEncoded ? encode(result.data) : result.data;
+                data = isUriEncoded ? (0, _url.encode)(result.data) : result.data;
                 // Should always encode # otherwise we yield a broken SVG
                 // in Firefox (works in Chrome however). See this issue:
                 // https://github.com/cssnano/cssnano/issues/245
@@ -80,12 +97,12 @@ function minifyPromise(decl, getSvgo, opts, postcssResult) {
     return Promise.all(promises).then(() => decl.value = decl.value.toString());
 }
 
-export default postcss.plugin(PLUGIN, (opts = {}) => {
+exports.default = _postcss2.default.plugin(PLUGIN, (opts = {}) => {
     let svgo = null;
 
     const getSvgo = () => {
         if (!svgo) {
-            svgo = new SVGO(opts);
+            svgo = new _svgo2.default(opts);
         }
 
         return svgo;
@@ -107,3 +124,4 @@ export default postcss.plugin(PLUGIN, (opts = {}) => {
         });
     };
 });
+module.exports = exports['default'];

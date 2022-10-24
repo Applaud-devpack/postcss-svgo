@@ -1,6 +1,6 @@
 {
   "name": "@applaud/postcss-svgo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Optimise inline SVG with PostCSS.",
   "main": "dist/index.js",
   "scripts": {
